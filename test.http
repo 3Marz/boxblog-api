@@ -1,0 +1,54 @@
+
+POST http://localhost:8080/blogs
+Content-Type: application/json
+
+{
+  "title" : "Pygamaesasd awd adasda wdwa",
+  "desc" : "asdasdasd asdawd qd asd asd",
+  "image" : "https://asd asd gos.png",
+  "body" : "<p>HASdawdasdfdfkasasod</p>",
+  "category" : "Art"
+}
+
+###
+
+POST http://localhost:8080/users/signup
+Content-Type: application/json
+
+{
+  "username": "3mar1",
+  "email" : "test@example123.com",
+  "password" : "qW123132"
+}
+
+###
+
+GET http://localhost:8080/users
+
+###
+
+GET http://localhost:8080/blogs
+
+###
+
+GET http://localhost:8080/blogs/6636527faa894f30c6d44c79
+
+###
+
+PUT http://localhost:8080/blogs/6636527faa894f30c6d44c79
+Content-Type: application/json
+
+{
+  "title" : "I Love Femboys!!",
+  "image" : "https://asd asd gos.png",
+  "body" : "<p>HASdawdasdfdfkasasod</p>",
+  "creater" : "MEmeasd as"
+}
+
+###
+
+DELETE http://localhost:8080/blogs/66395c67ae1364429be99aaf
+
+###
+
+DELETE http://localhost:8080/blogs/
