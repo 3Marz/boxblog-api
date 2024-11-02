@@ -9,11 +9,11 @@ type Database = {
 }
 
 const sequelize = new Sequelize(
-	'boxblog',
-	'omar',
-	'0909',
+	process.env.DB_NAME as string,
+	process.env.DB_USER as string,
+	process.env.DB_PASSWORD as string,
 	{
-		host: 'localhost',
+		host: process.env.DB_HOST as string,
 		dialect: 'mysql',
 		logging: false
 	});

@@ -1,4 +1,5 @@
 import dotenv from "dotenv"
+dotenv.config()
 import db from "./database";
 import App from "./app";
 
@@ -7,8 +8,6 @@ import BlogController from './controllers/blogs.controller';
 
 import UserRoute from "./routes/users.route";
 import UserController from "./controllers/users.controller";
-
-dotenv.config()
 
 const app = new App()
 
