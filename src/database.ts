@@ -9,8 +9,20 @@ type Database = {
 }
 
 const sequelize = new Sequelize(
-	'sqlite:prod.db', {
-	//logging: false
+	'boxblog',
+	'omar',
+	'0909',
+	{
+		host: 'localhost',
+		dialect: 'mysql',
+		logging: false
+	});
+
+sequelize.authenticate().then(() => {
+   console.log('Connection has been established successfully.');
+}).catch((error) => {
+   console.error('Unable to connect to the database: ', error);
+   return
 });
 
 const blog = Blog(sequelize)

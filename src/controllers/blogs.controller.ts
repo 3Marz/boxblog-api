@@ -44,7 +44,7 @@ const findAllByUserId = async (req: Request, res: Response) => {
 const findRandom = async (_req: Request, res: Response) => {
 	try {
 		const blog = await db.blog.findOne({
-			order: Sequelize.literal('RANDOM()'),
+			order: Sequelize.literal('RAND()'),
 			limit: 1
 		})
 
