@@ -3,17 +3,17 @@ import Route from '.';
 import BlogController from '../controllers/blogs.controller';
 import isAuthorized from "../middlewares/isAuthorized";
 
-const storage = multer.diskStorage({
-	destination: function(_req, _file, cb) {
-		cb(null, './uploads')
-	},
-	filename: function(_req, file, cb) {
-		const uniqueSuffix = Date.now()
-		cb(null, uniqueSuffix + '-' + file.originalname)
-	}
-})
+//const storage = multer.diskStorage({
+//	destination: function(_req, _file, cb) {
+//		cb(null, './uploads')
+//	},
+//	filename: function(_req, file, cb) {
+//		const uniqueSuffix = Date.now()
+//		cb(null, uniqueSuffix + '-' + file.originalname)
+//	}
+//})
 
-const upload = multer({ storage })
+const upload = multer({ dest: 'uploads/' })
 
 class BlogRoute extends Route {
 	controller: typeof BlogController
