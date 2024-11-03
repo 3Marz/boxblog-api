@@ -5,6 +5,7 @@ import path from 'path';
 import cookieParser from "cookie-parser"
 
 import Route from "./routes";
+import { getFileStrem } from "./s3";
 
 class App {
 	app: Express
@@ -41,6 +42,14 @@ class App {
 					console.log("Sent", name)
 				}
 			})
+		})
+
+		this.app.get('/images/:key', (req, res) => {
+			const key: string = req.params.key
+
+			const readStream = getFileStrem(key)
+			
+			readStream.pipe(res)
 		})
 	}
 }
