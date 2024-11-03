@@ -2,6 +2,7 @@ import { Response, Request, NextFunction } from "express";
 import db from "../database";
 import { Sequelize } from "sequelize";
 import { deleteFile, uploadFile } from "../s3";
+import { unlink } from "fs";
 
 const findAll = async (req: Request, res: Response) => {
 	try {
@@ -74,6 +75,10 @@ const createBlog = async (req: Request, res: Response) => {
 			}
 			await db.blog.create(newBlog)
 			await uploadFile(`uploads/${req.file?.filename}`, req.file?.filename)
+
+			unlink(`./uploads/${req.file?.filename}`, (err) => {
+				if (err) throw err
+			})
 
 			res.status(201).json({
 				message: "new Blog Created!",
