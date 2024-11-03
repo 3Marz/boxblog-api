@@ -1,6 +1,7 @@
 import { Response, Request, NextFunction } from "express";
 import db from "../database";
 import { Sequelize } from "sequelize";
+import { deleteFile, uploadFile } from "../s3";
 
 const findAll = async (req: Request, res: Response) => {
 	try {
@@ -56,8 +57,8 @@ const findRandom = async (_req: Request, res: Response) => {
 }
 
 const createBlog = async (req: Request, res: Response) => {
-	if (!req.body.title || !req.body.desc || !req.body.body || !req.body.category) {
-		res.status(400).json({
+	if (!req.body.title || !req.body.desc || !req.body.body || !req.body.category || !req.file) {
+		return res.status(400).json({
 			message: "Data is invalid! send all required data:title, desc, body, category, image"
 		})
 	} else {
@@ -72,6 +73,7 @@ const createBlog = async (req: Request, res: Response) => {
 				userId: req.userData.userId
 			}
 			await db.blog.create(newBlog)
+			await uploadFile(`uploads/${req.file?.filename}`, req.file?.filename)
 
 			res.status(201).json({
 				message: "new Blog Created!",
@@ -167,6 +169,7 @@ const deleteBlog = async (req: Request, res: Response) => {
 			return res.status(401).json({ message: "You are not the owner of the blog" });
 		}
 
+		await deleteFile(blog.image)
 		await blog.destroy()
 		res.status(200).json({ message: "Blog has been Deleted!" })
 
