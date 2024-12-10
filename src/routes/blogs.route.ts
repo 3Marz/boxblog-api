@@ -13,7 +13,7 @@ import isAuthorized from "../middlewares/isAuthorized";
 //	}
 //})
 
-const upload = multer({ dest: 'uploads/' })
+const upload = multer({ dest: '/tmp/' })
 
 class BlogRoute extends Route {
 	controller: typeof BlogController

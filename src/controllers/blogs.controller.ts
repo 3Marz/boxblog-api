@@ -74,9 +74,9 @@ const createBlog = async (req: Request, res: Response) => {
 				userId: req.userData.userId
 			}
 			await db.blog.create(newBlog)
-			await uploadFile(`uploads/${req.file?.filename}`, req.file?.filename)
+			await uploadFile(`/tmp/${req.file?.filename}`, req.file?.filename)
 
-			unlink(`./uploads/${req.file?.filename}`, (err) => {
+			unlink(`/tmp/${req.file?.filename}`, (err) => {
 				if (err) throw err
 			})
 
