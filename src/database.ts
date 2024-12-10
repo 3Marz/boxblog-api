@@ -16,6 +16,7 @@ const sequelize = new Sequelize(
 		host: process.env.DB_HOST as string,
 		port: Number(process.env.DB_PORT),
 		dialect: 'mysql',
+		dialectModule: require('mysql2'),
 		logging: false
 	});
 
