@@ -14,7 +14,7 @@ class App {
 		this.app.use(bodyParser.urlencoded({ extended: false }))
 		this.app.use(bodyParser.json())
 		this.app.use(cookieParser())
-		this.app.use(cors({credentials:true, origin:["http://localhost:5173", "https://boxblog-pink.vercel.app/"]}))
+		this.app.use(cors({credentials:true, origin:["http://localhost:5173", "https://boxblog-pink.vercel.app"]}))
 	}
 
 	addRoute(path: string, route: Route) {
